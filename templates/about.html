@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — PhishGuard AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .about-section {
+      margin-bottom: 24px;
+      padding: 32px;
+    }
+
+    .about-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-section h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-1);
+    }
+
+    .about-section p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 12px;
+      font-size: 0.92rem;
+    }
+
+    .about-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-item {
+      padding: 28px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: var(--radius-md);
+    }
+
+    .stat-item h3 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-item p {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tech-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 100px;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .tech-badge:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: rgba(99, 102, 241, 0.2);
+      color: var(--accent-1);
+    }
+
+    .about-list {
+      margin: 12px 0;
+      padding-left: 20px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 2;
+    }
+
+    .about-list li::marker {
+      color: var(--accent-1);
+    }
+
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08)) !important;
+      border: 1px solid rgba(99, 102, 241, 0.15) !important;
+    }
+
+    .cta-section h2 {
+      justify-content: center;
+    }
+
+    .cta-section p {
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .about-columns {
+      columns: 2;
+      column-gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .about-columns {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <span class="nav-brand-icon">
+          <i class="fas fa-shield-halved"></i>
+        </span>
+        PhishGuard AI
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about" class="active">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-label">
+        <i class="fas fa-info-circle"></i>
+        About the Project
+      </div>
+      <h1 class="hero-title">
+        How PhishGuard AI protects you
+      </h1>
+      <p class="hero-subtitle">
+        Understanding the technology behind our phishing detection system
+      </p>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>96.2%</h3>
+          <p>Detection Accuracy</p>
+        </div>
+        <div class="stat-item">
+          <h3>95.5%</h3>
+          <p>Precision Rate</p>
+        </div>
+        <div class="stat-item">
+          <h3>97.0%</h3>
+          <p>Recall Rate</p>
+        </div>
+        <div class="stat-item">
+          <h3>235K+</h3>
+          <p>URLs Trained On</p>
+        </div>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-diagram-project"></i> Project Overview</h2>
+        <p>
+          PhishGuard AI is an advanced phishing detection system powered by machine learning. It was developed to address the growing threat of phishing attacks that exploit human vulnerabilities to steal sensitive information.
+        </p>
+        <p>
+          The system uses a <strong>Random Forest classifier</strong> trained on a comprehensive dataset of both phishing and legitimate URLs. By analyzing <strong>36+ URL features</strong>, it can accurately determine whether a website is safe or potentially malicious.
+        </p>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-gears"></i> How It Works</h2>
+        <p><strong>1. URL Input —</strong> You enter a website URL you want to check.</p>
+        <p><strong>2. Feature Extraction —</strong> The system extracts 36+ features including URL length, special characters, HTTPS usage, suspicious keywords, and domain characteristics.</p>
+        <p><strong>3. ML Analysis —</strong> A trained Random Forest model processes these features and calculates the probability of the URL being a phishing attempt.</p>
+        <p><strong>4. Result —</strong> You get instant feedback with confidence scores and safety recommendations.</p>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-list-check"></i> Features We Analyze</h2>
+        <p>Our system examines multiple aspects of every URL:</p>
+        <ul class="about-list about-columns">
+          <li>URL and hostname length</li>
+          <li>Number of dots, hyphens, slashes</li>
+          <li>Special character count</li>
+          <li>HTTPS / HTTP protocol</li>
+          <li>Number of subdomains</li>
+          <li>IP address presence</li>
+          <li>TLD analysis</li>
+          <li>Digit and letter ratios</li>
+          <li>URL shortening detection</li>
+          <li>Suspicious keywords</li>
+          <li>Brand name spoofing</li>
+          <li>Obfuscation patterns</li>
+        </ul>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-laptop-code"></i> Technology Stack</h2>
+        <div class="tech-stack">
+          <span class="tech-badge"><i class="fab fa-python"></i> Python 3.9+</span>
+          <span class="tech-badge"><i class="fas fa-flask"></i> Flask</span>
+          <span class="tech-badge"><i class="fas fa-brain"></i> Scikit-learn</span>
+          <span class="tech-badge"><i class="fas fa-table"></i> Pandas</span>
+          <span class="tech-badge"><i class="fas fa-calculator"></i> NumPy</span>
+          <span class="tech-badge"><i class="fab fa-html5"></i> HTML5</span>
+          <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
+          <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="tech-badge"><i class="fas fa-tree"></i> Random Forest</span>
+        </div>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-database"></i> Dataset</h2>
+        <p>
+          The model was trained on the <strong>PhiUSIIL Phishing URL Dataset</strong> from Kaggle:
+        </p>
+        <ul class="about-list">
+          <li><strong>134,850</strong> legitimate URLs</li>
+          <li><strong>100,945</strong> phishing URLs</li>
+          <li><strong>235,795</strong> total samples</li>
+        </ul>
+        <p>The dataset was split 80/20 for training and testing, ensuring robust performance on unseen URLs.</p>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-shield-virus"></i> Why Phishing Detection Matters</h2>
+        <p>
+          Phishing attacks have become increasingly sophisticated. According to the Anti-Phishing Working Group (APWG), phishing incidents continue to rise globally, with costs estimated in the billions annually.
+        </p>
+        <p>
+          Traditional blacklists and rule-based systems struggle to keep up. Machine learning offers a proactive approach that can detect zero-day attacks, adapt to new patterns, and reduce false positives.
+        </p>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-triangle-exclamation"></i> Limitations</h2>
+        <p>While highly accurate, no system is perfect. Please be aware:</p>
+        <ul class="about-list">
+          <li><strong>Not 100% accurate —</strong> Always exercise caution online.</li>
+          <li><strong>URL-based only —</strong> We analyze URL patterns, not website content.</li>
+          <li><strong>Evolving threats —</strong> Attackers constantly develop new techniques.</li>
+          <li><strong>False results —</strong> Legitimate sites may be flagged or sophisticated attacks may pass.</li>
+        </ul>
+        <p style="margin-top: 12px;"><strong>Recommendation:</strong> Use this as one layer of protection alongside antivirus software, two-factor authentication, and security awareness.</p>
+      </div>
+
+      <div class="glass-card about-section">
+        <h2><i class="fas fa-user-shield"></i> Best Practices</h2>
+        <ol class="about-list" style="list-style: decimal; padding-left: 20px;">
+          <li>Always verify the URL before entering sensitive information</li>
+          <li>Look for HTTPS and a valid SSL certificate (padlock icon)</li>
+          <li>Be suspicious of urgent requests or threats</li>
+          <li>Don't click links in unsolicited emails</li>
+          <li>Enable two-factor authentication wherever possible</li>
+          <li>Keep your browser and antivirus updated</li>
+          <li>Never share passwords via email</li>
+          <li>Use unique, strong passwords for each account</li>
+          <li>Verify sender email addresses carefully</li>
+          <li>When in doubt, contact the organization directly</li>
+        </ol>
+      </div>
+
+      <div class="glass-card about-section cta-section">
+        <h2><i class="fas fa-rocket"></i> Stay Protected</h2>
+        <p>
+          Start using PhishGuard AI today to protect yourself from phishing attacks.
+        </p>
+        <a href="/" class="btn btn-primary" style="margin-top: 16px; text-decoration: none;">
+          <i class="fas fa-arrow-left"></i>
+          Check a URL Now
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 PhishGuard AI — Phishing Detection System</p>
+      <p>Built with machine learning &bull; Flask &bull; Random Forest</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard AI - Phishing Detection System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <span class="nav-brand-icon">
+          <i class="fas fa-shield-halved"></i>
+        </span>
+        PhishGuard AI
+      </a>
+      <ul class="nav-links">
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-label">
+        <i class="fas fa-bolt"></i>
+        Real-Time AI Protection
+      </div>
+      <h1 class="hero-title">
+        Check if a website<br>is safe before you visit
+      </h1>
+      <p class="hero-subtitle">
+        Enter any URL below and our AI will instantly analyze it for phishing threats.
+      </p>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="glass-card input-card">
+        <div class="input-card-header">
+          <i class="fas fa-magnifying-glass" style="color: var(--accent-1); font-size: 1.1rem;"></i>
+          <h2>Check a URL</h2>
+        </div>
+        <p class="input-card-subtitle">Paste or type a website URL to analyze its safety</p>
+
+        <form id="urlForm">
+          <div class="input-group">
+            <input
+              type="text"
+              id="urlInput"
+              placeholder="https://example.com"
+              required
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <button type="submit" class="btn btn-primary" id="checkBtn">
+              <i class="fas fa-shield-halved"></i>
+              Check URL
+            </button>
+          </div>
+          <p class="input-hint">
+            <i class="fas fa-circle-info"></i>
+            Enter a full URL like https://example.com or just a domain like google.com
+          </p>
+        </form>
+
+        <div class="examples" id="examplesContainer">
+          <div class="examples-label">
+            <i class="fa-regular fa-lightbulb"></i>
+            Quick test examples
+          </div>
+          <div class="examples-list" id="examplesList"></div>
+        </div>
+      </div>
+
+      <div id="loadingSpinner" class="spinner-container" style="display: none;">
+        <div class="spinner-ring"></div>
+        <p class="spinner-text">Analyzing URL with AI...</p>
+      </div>
+
+      <div id="resultCard" class="glass-card result-card" style="display: none;">
+        <div class="result-header">
+          <div class="result-icon" id="resultIcon"></div>
+          <h2 id="resultTitle"></h2>
+        </div>
+
+        <div class="result-body">
+          <div class="url-display">
+            <strong>URL Checked</strong>
+            <p id="checkedUrl"></p>
+          </div>
+
+          <div class="confidence-bar">
+            <div class="confidence-label">
+              <span>AI Confidence</span>
+              <span id="confidenceValue">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div id="confidenceProgress" class="progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="probability-grid">
+            <div class="probability-item safe">
+              <i class="fas fa-shield-check"></i>
+              <span class="label">Safe</span>
+              <span class="value" id="safeProbability">0%</span>
+            </div>
+            <div class="probability-item danger">
+              <i class="fas fa-triangle-exclamation"></i>
+              <span class="label">Phishing Risk</span>
+              <span class="value" id="phishingProbability">0%</span>
+            </div>
+          </div>
+
+          <div class="recommendation" id="recommendation"></div>
+        </div>
+
+        <button class="btn btn-secondary" onclick="resetForm()" style="width: 100%;">
+          <i class="fas fa-arrow-rotate-left"></i>
+          Check Another URL
+        </button>
+      </div>
+
+      <div id="errorCard" class="glass-card error-card" style="display: none;">
+        <div class="error-icon-big">
+          <i class="fas fa-circle-exclamation"></i>
+        </div>
+        <h3>Analysis Failed</h3>
+        <p id="errorMessage"></p>
+        <button class="btn btn-primary" onclick="resetForm()">
+          <i class="fas fa-arrow-rotate-left"></i>
+          Try Again
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why PhishGuard AI?</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI-Powered</h3>
+          <p>Advanced machine learning analyzes 36+ URL features instantly</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Real-Time</h3>
+          <p>Get results in milliseconds with our optimized detection engine</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-chart-simple"></i>
+          </div>
+          <h3>96%+ Accuracy</h3>
+          <p>Random Forest algorithm trained on 235K+ real-world URLs</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Privacy First</h3>
+          <p>Your URLs are never stored, logged, or shared with anyone</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 PhishGuard AI — Phishing Detection System</p>
+      <p>Built with machine learning &bull; Flask &bull; Random Forest</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>500 — Server Error</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; position: relative; z-index: 1;">
+    <div class="glass-card" style="max-width: 480px; width: 100%; text-align: center; padding: 48px 32px;">
+      <div style="font-size: 5rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1; margin-bottom: 8px; background: linear-gradient(135deg, var(--danger), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        500
+      </div>
+      <div style="width: 64px; height: 3px; background: linear-gradient(90deg, var(--danger), var(--accent-2)); border-radius: 100px; margin: 16px auto;"></div>
+      <h2 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 12px;">Internal Server Error</h2>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 32px;">
+        Something went wrong on our end. Please try again later.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary">
+          <i class="fas fa-home"></i>
+          Back to Home
+        </a>
+        <a href="/about" class="btn btn-secondary" style="text-decoration: none;">
+          <i class="fas fa-info-circle"></i>
+          About
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
