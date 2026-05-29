@@ -126,11 +126,23 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
+        global model
+        loading_error = None
+        if model is None:
+            try:
+                model = joblib.load(MODEL_PATH)
+                print(f"✓ Model loaded on request!")
+            except Exception as e:
+                loading_error = str(e)
+                print(f"ERROR on-demand model load: {e}")
+                import traceback
+                traceback.print_exc()
+
         if model is None:
             info = get_model_info()
             return jsonify({
                 'success': False,
-                'error': f'AI model not available. Model info: {info}'
+                'error': f'AI model not available. Load error: {loading_error}. Model info: {info}'
             }), 503
 
         data = request.get_json()
