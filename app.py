@@ -15,11 +15,7 @@ import sys
 app = Flask(__name__)
 
 MODEL_PATH = 'models/phishing_model.pkl'
-MODEL_FEATURES_PATH = 'models/phishing_model_features.pkl'
-SCALER_PATH = 'models/scaler.pkl'
 model = None
-expected_features = None
-scaler = None
 
 def get_model_info():
     info = {
@@ -31,7 +27,7 @@ def get_model_info():
     return info
 
 def load_model_safely():
-    global model, expected_features, scaler
+    global model
     try:
         if not os.path.exists(MODEL_PATH):
             print(f"ERROR: Model file not found at {MODEL_PATH}")
@@ -40,25 +36,15 @@ def load_model_safely():
             return False
 
         model = joblib.load(MODEL_PATH)
-        print(f"✓ Model loaded successfully! Type: {type(model).__name__}")
-
+        print(f"Model loaded successfully! Type: {type(model).__name__}")
         if hasattr(model, 'n_features_in_'):
             print(f"  Expected features: {model.n_features_in_}")
         if hasattr(model, 'classes_'):
             print(f"  Classes: {model.classes_}")
 
-        if os.path.exists(MODEL_FEATURES_PATH):
-            expected_features = joblib.load(MODEL_FEATURES_PATH)
-            print(f"  Loaded {len(expected_features)} expected feature names")
-
-        if os.path.exists(SCALER_PATH) and os.path.getsize(SCALER_PATH) > 0:
-            scaler = joblib.load(SCALER_PATH)
-            print("  Scaler loaded")
-
         return True
     except Exception as e:
         print(f"ERROR loading model: {str(e)}")
-        print(f"Error type: {type(e).__name__}")
         import traceback
         traceback.print_exc()
         return False
@@ -89,9 +75,6 @@ def predict_url(url):
     try:
         features = extract_features(url)
         features_array = np.array(features).reshape(1, -1)
-
-        if scaler is not None:
-            features_array = scaler.transform(features_array)
 
         prediction = model.predict(features_array)[0]
         probability = model.predict_proba(features_array)[0]
